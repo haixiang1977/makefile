@@ -6,6 +6,7 @@ STRIP = strip
 MKDIR = mkdir -p
 MAKE = make
 RM = rm
+CP = cp
 
 CXXFLAGS = -Wall -I$(MAKEFILE_TEST_INCLUDE)
 LIBS = -L$(MAKEFILE_TEST_LIB)
