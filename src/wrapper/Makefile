@@ -4,6 +4,8 @@ SUB_HEADERS = -I./sub1/ -I./sub2/ -I./sub3/
 
 SRCS = $(wildcard *.cpp)
 SRCS += $(wildcard sub1/*.cpp)
+SRCS += $(wildcard sub2/*.cpp)
+SRCS += $(wildcard sub3/*.cpp)
 OBJS = $(SRCS:%.cpp=%.o)
 
 TARGET = libtest.a
