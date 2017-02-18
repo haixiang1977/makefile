@@ -3,9 +3,13 @@
 
 class A {
 public:
-    void print ();
+    void print();
 };
 
+class B {
+public:
+    void print();
+};
 
 #endif
 
