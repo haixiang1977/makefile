@@ -1,6 +1,9 @@
 include $(MAKEFILE_TEST_MAKE)/rules.mak
 
+SUB_HEADERS = -I./sub1/ -I./sub2/ -I./sub3/
+
 SRCS = $(wildcard *.cpp)
+SRCS += $(wildcard sub1/*.cpp)
 OBJS = $(SRCS:%.cpp=%.o)
 
 TARGET = libtest.a
@@ -13,7 +16,7 @@ $(TARGET): $(OBJS)
 
 $(OBJS):
 %.o : %.cpp
-	$(CXX) -c $(CXXFLAGS) $(INCLUDE_HEADERS) -o $@ $<
+	$(CXX) -c $(CXXFLAGS) $(INCLUDE_HEADERS) $(SUB_HEADERS) -o $@ $<
 
 clean:
 	$(RM) $(OBJS)
