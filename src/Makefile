@@ -1,19 +1,20 @@
-include ../rules.mak
+include $(MAKEFILE_TEST_MAKE)/rules.mak
 
-sources = $(wildcard *.cpp)
-objects = $(sources:%.cpp=%.o)
-exe = opcclient
+exe = test
 
 all: $(exe)
 
-$(exe): $(objects)
-	$(CXX)  $(EXTRA_CXXFLAGS) -o $@ $(objects) $(LIBS)	
+$(exe): main.o libtest.a
+	$(CXX)  $(EXTRA_CXXFLAGS) main.o -o $@ $(LIBS) -ltest
+	$(CP) $(exe) $(MAKEFILE_TEST_INSTALL)
 
-$(objects):
-%.o : %.cpp
-	$(CXX) -c $(CXXFLAGS) $(EXTRA_CXXFLAGS) -o $@ $<
+libtest.a:
+	$(MAKE) -C wrapper
 
 clean:
-	$(RM) $(objects)
+	$(RM) main.o
+	$(MAKE) -C wrapper clean
 	$(RM) $(exe)
+	$(RM) $(MAKEFILE_TEST_INSTALL)/$(exe)
+
 
